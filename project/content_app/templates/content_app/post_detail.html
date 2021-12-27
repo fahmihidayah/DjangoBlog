@@ -1,0 +1,59 @@
+{% extends "app/base.html" %}
+{% load static %}
+{% load thumbnail %}
+
+{% load django_tables2 %}
+{% load crispy_forms_tags %}
+{% block content_title %} {{ object.title }} {% endblock %}
+{% block content %}
+
+     {% if is_accessible %} 
+    <table class="table">
+        <tbody>
+         
+            <tr>
+                <td>slug</td>
+                <td>{{ object.slug }}</td>
+            </tr>
+         
+            <tr>
+                <td>title</td>
+                <td>{{ object.title }}</td>
+            </tr>
+         
+            <tr>
+                <td>content</td>
+                <td>{{ object.content | safe}}</td>
+            </tr>
+         
+            <tr>
+                <td>user</td>
+                <td>{{ object.user }}</td>
+            </tr>
+         
+            <tr>
+                <td>is_published</td>
+                <td>{{ object.is_published }}</td>
+            </tr>
+         
+            <tr>
+                <td>created</td>
+                <td>{{ object.created }}</td>
+            </tr>
+         
+            <tr>
+                <td>updated</td>
+                <td>{{ object.updated }}</td>
+            </tr>
+         
+
+        </tbody>
+    </table>
+    <a class="btn btn-primary pull-right" href="{{ object.get_update_url }}"><i class="fa fa-arrow-left"></i> Edit Post</a>
+     {% else %}
+        <h4>Permission Denied!</h4>
+    {% endif %}
+{% endblock %}
+{% block bottom_content %}
+<a class="btn btn-primary pull-right" href="{% url 'post_list' %}"><i class="fa fa-arrow-left"></i> Daftar Post</a>
+{% endblock bottom_content%}

@@ -1,0 +1,10 @@
+{% load crispy_forms_tags %}
+<form method="get" action="">
+    {{ search_form | crispy }}
+
+    <button name="category" value="" class="mb-2 btn btn-sm {% if selected_category_id == '' %} btn-primary {% else %}btn-outline-primary {% endif %} ">All</button>
+    {% for category in categories %}
+        <button name="category" value="{{ category.id }}" class="mb-2 btn btn-sm {% if selected_category_id == category.id|stringformat:'i' %} btn-primary {% else %}btn-outline-primary {% endif %}">{{category.name}}</button>
+    {% endfor %}
+<button type="submit" class="btn btn-success btn-sm btn-block">Cari</button>
+</form>

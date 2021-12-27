@@ -1,0 +1,59 @@
+{% extends "app/base.html" %}
+{% load static %}
+{% load thumbnail %}
+
+{% load django_tables2 %}
+{% load crispy_forms_tags %}
+{% block content_title %} {{ object.title }} {% endblock %}
+{% block content %}
+    <table class="table">
+        <tbody>
+         
+            <tr>
+                <td>slug</td>
+                <td>{{ object.slug }}</td>
+            </tr>
+         
+            <tr>
+                <td>title</td>
+                <td>{{ object.title }}</td>
+            </tr>
+         
+            <tr>
+                <td>content</td>
+                <td>{{ object.content }}</td>
+            </tr>
+         
+            <tr>
+                <td>user</td>
+                <td>{{ object.user }}</td>
+            </tr>
+         
+            <tr>
+                <td>is_published</td>
+                <td>{{ object.is_published }}</td>
+            </tr>
+         
+            <tr>
+                <td>created</td>
+                <td>{{ object.created }}</td>
+            </tr>
+         
+            <tr>
+                <td>updated</td>
+                <td>{{ object.updated }}</td>
+            </tr>
+         
+
+        </tbody>
+    </table>
+
+<form method="post" >
+     {% csrf_token %}
+
+    <p>Do you want to delete this data?</p>
+
+    <button class="btn btn-danger" type="submit">Delete</button>
+</form>
+
+{% endblock %}

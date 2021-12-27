@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% load thumbnail %}
+{% load easy_thumbnails_tags %}
+{% load django_tables2 %}
+{% block title %}Home{% endblock %}
+{% block content_title %} Home {% endblock content_title %}
+{% block container %}
+
+<div class="row mt-3">
+    <div class="col-md-12">
+        {% include 'frontend/carousel.html' %}
+    </div>
+</div>
+
+<div class="row mt-3">
+    <div class="col-md-3">
+        {% include 'frontend/left_menu.html' %}
+    </div>
+    <div class="col-md-9">
+
+        <div class="row hidden-md-up">
+            {% for post in posts%}
+            <div class="col-md-4 col-sm-6">
+                <div class="card border-primary " style="width: 15rem;">
+                    <form method="post" action="{% url 'favourite_post' post.slug%}">
+                        {% csrf_token %}
+                         <button class="btn btn-outline-light btn-sm pull-right m-2 ">
+                             <i class="fa fa-heart" style="color: {% if post.is_favourite == 1 %} #FF390E {% else %} #FFC0CB {% endif %}"></i>
+                         </button>
+                    </form>
+
+                    <img src="{% thumbnail post.image 300x200 crop %}" class="card-img-top" alt="img">
+                    <div class="card-body">
+                        <h6 class="card-title">{{ post.title | slice:"50"}}</h6>
+                        <!--<p class="card-text p-y-1">{{ post.content |slice:"150"| safe}}</p>-->
+                        <a href="{% url 'view_post_detail' post.slug %}" class="btn btn-primary">Read</a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+
+    </div>
+</div>
+
+
+{% endblock container %}

@@ -1,0 +1,16 @@
+{%extends "app/base.html" %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% load thumbnail %}
+{% load django_tables2 %}
+{% block content_title %} List Post {% endblock%}
+{%block content%}
+    
+    <form method="get" >
+        {{ search_form|crispy }}
+        <button class="btn btn-sm btn-primary" type="submit">Search</button>
+    </form>
+    
+    {% render_table table %}
+    <a class="btn btn-primary pull-right" href="{% url 'post_create' %}">Create Post</a>
+{%endblock%}

@@ -1,0 +1,47 @@
+{% extends "app/base.html" %}
+{% load static %}
+{% load thumbnail %}
+
+{% load django_tables2 %}
+{% load crispy_forms_tags %}
+{% block content_title %} {{ object.title }} {% endblock %}
+{% block content %}
+
+    
+    <table class="table">
+        <tbody>
+         
+            <tr>
+                <td>slug</td>
+                <td>{{ object.slug }}</td>
+            </tr>
+         
+            <tr>
+                <td>name</td>
+                <td>{{ object.name }}</td>
+            </tr>
+         
+            <tr>
+                <td>description</td>
+                <td>{{ object.description }}</td>
+            </tr>
+         
+            <tr>
+                <td>created</td>
+                <td>{{ object.created }}</td>
+            </tr>
+         
+            <tr>
+                <td>updated</td>
+                <td>{{ object.updated }}</td>
+            </tr>
+         
+
+        </tbody>
+    </table>
+    <a class="btn btn-primary pull-right" href="{{ object.get_update_url }}"><i class="fa fa-arrow-left"></i> Edit Category</a>
+    
+{% endblock %}
+{% block bottom_content %}
+<a class="btn btn-primary pull-right" href="{% url 'category_list' %}"><i class="fa fa-arrow-left"></i> Daftar Category</a>
+{% endblock bottom_content%}
