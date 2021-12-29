@@ -1,6 +1,6 @@
 from .models import *
 from django.db import models
-
+from comment_app.models import Comment
 
 class PostRepository:
     
@@ -11,7 +11,7 @@ class PostRepository:
                 .filter(models.Q(is_banner=False))
         else:
             return Post.objects.filter(models.Q(is_banner=False))
-        
+
     def filter(self, user, params: dict= None, category: str = None) -> models.QuerySet:
         query_set = self.find(user)
         if user:
@@ -29,7 +29,7 @@ class PostRepository:
         return Post.objects.annotate(is_favourite=models.Count('users_liked', filter=models.Q(users_liked_id=user.id))).all()
 
     def find_by_slug(self, slug, user = None):
-        return self.find(user).filter(slug=slug)
+        return self.find(user).filter(slug=slug).prefetch_related(models.Prefetch('comment_set', queryset=Comment.objects.select_related('user')))
 
     def get_by_slug(self, slug, user = None):
         return self.find(user).get(slug=slug)

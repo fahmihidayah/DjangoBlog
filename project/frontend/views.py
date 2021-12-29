@@ -7,6 +7,8 @@ from category_app.repositories import CategoryRepository
 from content_app.repositories import PostRepository
 from content_app.models import Post
 
+from comment_app.forms import CommentForm
+
 
 # Create your views here.
 
@@ -61,12 +63,18 @@ class FavouriteView(View):
             return redirect('login')
         return redirect("home")
 
+
 class DetailContentView(DetailView):
 
     model = Post
     post_repository : PostRepository = PostRepository()
     template_name = "frontend/content_detail.html"
-    
+
+    def get_context_data(self, **kwargs):
+        context = super(DetailContentView, self).get_context_data(**kwargs)
+        context['comment_form'] = CommentForm()
+        return context
+
     def get_queryset(self):
         return self.post_repository.find_by_slug(self.kwargs['slug'])
 

@@ -28,6 +28,7 @@ urlpatterns = [
     # path('', views.IndexView.as_view(), name='index'),
     path('', include('content_app.urls')),
     path('', include('category_app.urls')),
+    path('', include('comment_app.urls')),
     path('', include('frontend.urls')),
 ]
 

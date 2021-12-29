@@ -56,8 +56,10 @@ INSTALLED_APPS = [
     'rest_framework.authtoken',
     'content_app',
     'category_app',
+    'comment_app',
     'frontend',
     'tinymce',
+
 
 ]
 
