@@ -36,7 +36,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-
+ROOT_URLCONF = 'project.urls'
 # Application definition
 
 INSTALLED_APPS = [
@@ -90,8 +90,6 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django.contrib.flatpages.middleware.FlatpageFallbackMiddleware',
 ]
-
-ROOT_URLCONF = 'project.urls'
 
 TEMPLATES = [
     {

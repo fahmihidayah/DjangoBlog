@@ -1,0 +1,6 @@
+nginx directory
+
+/etc/nginx
+/usr/share/nginx/html
+
+alias /home/app/project/static/;

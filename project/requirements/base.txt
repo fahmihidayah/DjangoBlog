@@ -10,7 +10,6 @@ django-extensions==2.1.5
 djangorestframework==3.12.4
 gunicorn==19.9.0
 django-guardian
-uwsgi
 django-tinymce
 djangorestframework-simplejwt
 djoser
